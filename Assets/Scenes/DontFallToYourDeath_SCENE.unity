@@ -539,6 +539,7 @@ MonoBehaviour:
   - {fileID: 1088335185}
   - {fileID: 937695869}
   - {fileID: 48602613}
+  - {fileID: 827091213}
   _dontFallToYourDeathController: {fileID: 1124338019}
 --- !u!1 &827091213
 GameObject:
@@ -1860,8 +1861,9 @@ GameObject:
   - component: {fileID: 1940345338}
   - component: {fileID: 1940345337}
   - component: {fileID: 1940345339}
+  - component: {fileID: 1940345340}
   m_Layer: 0
-  m_Name: Hero
+  m_Name: Grup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1927,13 +1929,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940345334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2, y: -14.064407, z: -16.43552}
+  m_LocalPosition: {x: 4.2, y: -14.06441, z: -16.43552}
   m_LocalScale: {x: 10.7826, y: 10.7826, z: 10.7826}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906764767}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.9605207}
 --- !u!114 &1940345337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,6 +1996,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.23, y: 9.42}
   m_EdgeRadius: 0
+--- !u!111 &1940345340
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940345334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c68c3e6e9bc28104c953a6b8e76f8c06, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c68c3e6e9bc28104c953a6b8e76f8c06, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2028650289
 GameObject:
   m_ObjectHideFlags: 0

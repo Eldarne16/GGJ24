@@ -13,14 +13,17 @@ public class SimplePlatformerController : MonoBehaviour
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
+        Debug.Log(horizontalInput);
         Vector2 movement = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
         if(movement.x > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<Animation>().Play();   
         }
-        else
+        else if (movement.x < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<Animation>().Play();
         }
         rb.velocity = movement;
     }
