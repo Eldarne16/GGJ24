@@ -18,7 +18,7 @@ public class gunscript : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
             Fire();
         }
@@ -35,17 +35,28 @@ public class gunscript : MonoBehaviour
         
             if(hit.transform.gameObject.tag == "WOMAN")
             {
-                Debug.Log("HIT !");
+
                 _hasWon = false;
-                _sceneHandler.NextLevel(_hasWon);
+                StartCoroutine(LevelEnd());
+
             }
 
             if(hit.transform.gameObject.tag == "MAN")
             {
-            Debug.Log("MANHIT");
+
                 _hasWon = true;
-                _sceneHandler.NextLevel(_hasWon);
+                StartCoroutine(LevelEnd());
+
             }
         
     }
+
+    IEnumerator LevelEnd()
+    {
+        yield return new WaitForSeconds(2);
+        Debug.Log(_hasWon);
+        _sceneHandler.NextLevel(_hasWon);
+
+    }
+
 }
