@@ -8,6 +8,7 @@ public class gunscript : MonoBehaviour
     SceneHandler _sceneHandler;
 
     public GameObject GunPoint;
+
     bool _hasWon;
 
     private void Awake()
