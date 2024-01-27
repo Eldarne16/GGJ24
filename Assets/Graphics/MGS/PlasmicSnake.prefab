@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2000662298074710387}
   - component: {fileID: 2120079908907230637}
   - component: {fileID: 5522423060699205501}
+  - component: {fileID: 2933031126153632739}
+  - component: {fileID: 1447921306955138883}
   m_Layer: 0
   m_Name: PlasmicSnake
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997554121417828126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.12, y: -6.1681995, z: 7.47}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,6 +109,39 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2933031126153632739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997554121417828126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbfe2168635a6c4aa42470dc3ec2f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Nam: 
+  Des: 
+  Ico: {fileID: 0}
+  Spe: 0
+  Agi: 0
+  Str: 0
+  Sta: 0
+--- !u!136 &1447921306955138883
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997554121417828126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7192632695060599189
 GameObject:
   m_ObjectHideFlags: 0

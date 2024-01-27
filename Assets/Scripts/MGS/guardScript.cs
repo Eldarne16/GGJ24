@@ -65,7 +65,10 @@ public class guardScript : MonoBehaviour
     IEnumerator GOTO()
     {
         Vector3 GOTOPos;
-        GOTOPos = new Vector3(GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.x, 0, GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.z);
+        //GOTOPos = new Vector3(GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.x, 0, GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.z);
+        int length = Orders[orderIndex].Length -5;
+        GOTOPos = Waypoints.GetWaypoints(int.Parse(Orders[orderIndex].Substring(5, length)));
+
         float distanceToWaypoint;
         guardAgent.destination = GOTOPos;
         distanceToWaypoint = Vector3.Distance(new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z), GOTOPos);

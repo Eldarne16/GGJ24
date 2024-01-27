@@ -47,7 +47,7 @@ public class MissionScript : MonoBehaviour
     int previousAgentsListIndex;
 
     private int fingerID;
-    EventSystem eventSystem;
+    public EventSystem eventSystem;
 
     Vector3 mousePos;
 
@@ -84,7 +84,7 @@ public class MissionScript : MonoBehaviour
 
         //eventSystem = GameObject.Find("Canvas").GetComponent<EventSystem>();
 
-        Invoke("ChangePanelContent", 0.01f);
+        //Invoke("ChangePanelContent", 0.01f);
     }
 
     // Update is called once per frame
@@ -178,9 +178,11 @@ public class MissionScript : MonoBehaviour
 
                 if (!eventSystem.IsPointerOverGameObject())
                 {
+
+                    Debug.Log("tes la");
                     mousePos = hit.point;
 
-                    agentsList[agentsListIndex].destination = mousePos;
+                    agentsList[0].destination = mousePos;
                 }
 
             }
