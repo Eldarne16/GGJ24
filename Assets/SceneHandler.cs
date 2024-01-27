@@ -8,7 +8,7 @@ public class SceneHandler : MonoBehaviour
     private static SceneHandler _instance;
 
     //Scenes
-    private string[] _sceneName = new string[] { "2" };
+    private string[] _sceneName = new string[] { "HeyListen_SCENE" };
 
     private Infos infos;
 
@@ -56,7 +56,7 @@ public class SceneHandler : MonoBehaviour
         }
         else
         {
-
+            Debug.Log("You Loose !!!");
         }
     }
 
