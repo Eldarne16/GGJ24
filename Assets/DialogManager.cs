@@ -10,8 +10,18 @@ public class DialogManager : MonoBehaviour
     private string[] pages;
     private int currentPage;
     private bool isTyping;
+    private bool _hasWon = true;
+
+    private Infos _infos;
+    private SceneHandler _sceneHandler;
 
     private Coroutine _currentCoroutine;
+
+    private void Awake()
+    {
+        _infos = Infos.instance;
+        _sceneHandler = _infos.GetHandler<SceneHandler>();
+    }
 
     private void Start()
     {
@@ -30,7 +40,7 @@ public class DialogManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        /*if (Input.GetKeyDown(KeyCode.Return))
         {
             currentPage++;
 
@@ -44,7 +54,30 @@ public class DialogManager : MonoBehaviour
                 // All pages displayed, you can add logic here for what to do next.
                 Debug.Log("All pages displayed. Add logic for next steps.");
             }
+        }*/
+    }
+
+    public void Next()
+    {
+        if(isTyping)
+        {
+            isTyping=false;
+            _hasWon = false;
         }
+        currentPage++;
+
+        if (currentPage < pages.Length)
+        {
+            StopCoroutine(_currentCoroutine);
+            ShowCurrentPage();
+        }
+        else
+        {
+            _sceneHandler.NextLevel(_hasWon);
+            // All pages displayed, you can add logic here for what to do next.
+            Debug.Log("All pages displayed. Add logic for next steps.");
+        }
+
     }
 
     private void ShowCurrentPage()
