@@ -20,6 +20,5 @@ class KeyboardLayout : MonoBehaviour
     private void Start()
     {
         string keyboardLayout = KeyboardLayout.GetCurrentKeyboardLayout();
-        Debug.Log(keyboardLayout);
     }
 }

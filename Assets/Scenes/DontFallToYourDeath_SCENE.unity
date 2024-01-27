@@ -539,6 +539,7 @@ MonoBehaviour:
   - {fileID: 1088335185}
   - {fileID: 937695869}
   - {fileID: 48602613}
+  _dontFallToYourDeathController: {fileID: 1124338019}
 --- !u!1 &827091213
 GameObject:
   m_ObjectHideFlags: 0

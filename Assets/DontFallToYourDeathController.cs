@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class DontFallToYourDeathController : MonoBehaviour
 {
-    private Camera _camera;
-    // Start is called before the first frame update
-    void Start()
+    private SceneHandler _sceneHandler;
+    private void Awake()
     {
-        
+        _sceneHandler = Infos.instance.GetHandler<SceneHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void End()
     {
-        
+        StartCoroutine(WaitForEnd());
     }
+
+    IEnumerator WaitForEnd()
+    {
+        yield return new WaitForSeconds(3f);
+        _sceneHandler.NextLevel(false);
+    }
+
 
 
 }

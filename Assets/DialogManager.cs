@@ -22,7 +22,7 @@ public class DialogManager : MonoBehaviour
         _infos = Infos.instance;
         _sceneHandler = _infos.GetHandler<SceneHandler>();
     }
-
+    
     private void Start()
     {
         pages = new string[]

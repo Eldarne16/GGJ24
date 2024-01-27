@@ -24,7 +24,6 @@ public class PlatformerFlagHandler : MonoBehaviour
     {
         if(collision.collider.gameObject.name == "Hero")
         {
-            Debug.Log("collision");
             _flag.SetActive(true);
             StartCoroutine(MoveObject());
         }

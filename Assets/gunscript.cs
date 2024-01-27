@@ -54,7 +54,6 @@ public class gunscript : MonoBehaviour
     IEnumerator LevelEnd()
     {
         yield return new WaitForSeconds(2);
-        Debug.Log(_hasWon);
         _sceneHandler.NextLevel(_hasWon);
 
     }

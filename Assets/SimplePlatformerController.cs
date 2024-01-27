@@ -23,6 +23,5 @@ public class SimplePlatformerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
         }
         rb.velocity = movement;
-        Debug.Log(movement);
     }
 }

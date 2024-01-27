@@ -42,10 +42,8 @@ public class PasswordSceneHandler : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("zazr");
         if (eventData.pointerEnter == _passwordInputField.gameObject)
         {
-            Debug.Log("zazr2");
             // Show the info bubble when the mouse pointer enters the input field
             infoBubble.SetActive(true);
         }
@@ -53,7 +51,6 @@ public class PasswordSceneHandler : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("zazr");
         // Hide the info bubble when the mouse pointer exits the input field
         infoBubble.SetActive(false);
     }

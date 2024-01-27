@@ -6,18 +6,8 @@ public class PlatformerTrapHandler : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _groundToDelete = new List<GameObject>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    DontFallToYourDeathController _dontFallToYourDeathController;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -27,6 +17,7 @@ public class PlatformerTrapHandler : MonoBehaviour
             {
                 Destroy(go);
             }
+            _dontFallToYourDeathController.End();
         }
     }
 }
