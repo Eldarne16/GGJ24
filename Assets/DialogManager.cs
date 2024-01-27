@@ -38,25 +38,6 @@ public class DialogManager : MonoBehaviour
         ShowCurrentPage();
     }
 
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Return))
-        {
-            currentPage++;
-
-            if (currentPage < pages.Length)
-            {
-                StopCoroutine(_currentCoroutine);
-                ShowCurrentPage();
-            }
-            else
-            {
-                // All pages displayed, you can add logic here for what to do next.
-                Debug.Log("All pages displayed. Add logic for next steps.");
-            }
-        }*/
-    }
-
     public void Next()
     {
         if(isTyping)
@@ -74,8 +55,6 @@ public class DialogManager : MonoBehaviour
         else
         {
             _sceneHandler.NextLevel(_hasWon);
-            // All pages displayed, you can add logic here for what to do next.
-            Debug.Log("All pages displayed. Add logic for next steps.");
         }
 
     }
