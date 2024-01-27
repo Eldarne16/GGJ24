@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GunGame_Scene.unity
     guid: 77bfa2102f4690c47bfefd9846ee18db
   - enabled: 1
-    path: Assets/Scenes/DontFallToYourDeath_SCENE.unity
+    path: Assets/Scenes/PlatformerSpike_SCENE.unity
     guid: ce92fb20ce26aa543b549ea10f21c824
   - enabled: 1
     path: Assets/Scenes/FinalScene_SCENE.unity
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver_SCENE.unity
     guid: 058e0123594ac0e4d940caca92b255ab
+  - enabled: 1
+    path: Assets/Scenes/DontFallToYourDeath_SCENE.unity
+    guid: 559a22402b98e6c46bfdddc45eb6f461
   m_configObjects: {}

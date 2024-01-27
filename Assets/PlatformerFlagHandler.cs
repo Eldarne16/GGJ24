@@ -22,7 +22,7 @@ public class PlatformerFlagHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.name == "Hero")
+        if(collision.collider.gameObject.name == "GrupContener")
         {
             _flag.SetActive(true);
             StartCoroutine(MoveObject());
