@@ -22,11 +22,23 @@ public class SimplePlatformerController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == 8)
+        {
+            Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.gameObject.layer == 6)
         {
             _isGrounded = true;
+        }
+        if(collision.collider.gameObject.layer == 7)
+        {
+            Infos.instance.GetHandler<SceneHandler>().NextLevel(false);
         }
     }
 

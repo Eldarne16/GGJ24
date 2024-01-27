@@ -9,7 +9,7 @@ public class SceneHandler : MonoBehaviour
     private static SceneHandler _instance;
 
     //Scenes
-    private string[] _sceneNames = new string[] { "HeyListen_SCENE", "DontFallToYourDeath_SCENE", "GunGame_Scene" };
+    private string[] _sceneNames = new string[] { "DontFallToYourDeath_SCENE"/*"HeyListen_SCENE", "DontFallToYourDeath_SCENE", "GunGame_Scene"*/ };
     private List<string> _currentSceneNamesList = new List<string>();
 
     private string _finalScene = "FinalScene_SCENE";
