@@ -35,7 +35,7 @@ public class MissionScript : MonoBehaviour
     Toggle followToggle;
 
  
-    public bool followAgent;
+    public bool followAgent = true;
     [SerializeField]
     private AnimationCurve camCurve;
 
@@ -50,14 +50,16 @@ public class MissionScript : MonoBehaviour
     EventSystem eventSystem;
 
     Vector3 mousePos;
+
+    float camOrthPos = 7f;
     void Start()
     {
-        mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        mainCam = GameObject.Find("Camera").GetComponent<Camera>();
         Screen.SetResolution(1920, 1080, fullScreenMode);
         FrameCount = 0;
         TimeValue = 1 * Time.deltaTime;
         cameraZPosition = mainCam.transform;
-        centerPosition = GameObject.Find("Center").transform;
+        centerPosition = GameObject.Find("SpawnPoint0").transform;
         InvokeRepeating("TimeSpent", 0, 1);
         targetDirection = new Vector3(0, 0, 0) - cameraZPosition.position;
 
@@ -72,16 +74,15 @@ public class MissionScript : MonoBehaviour
             agentsList.Add(newAgent.GetComponent<NavMeshAgent>());
 
         }
-     
 
-        textName = GameObject.Find("Name").GetComponent<Text>();
-        UIIcon = GameObject.Find("Icon").GetComponent<Image>();
-        textDesc = GameObject.Find("Description").GetComponent<Text>();
-        textStats = GameObject.Find("Stats").GetComponent<Text>();
+        //textName = GameObject.Find("Name").GetComponent<Text>();
+        //UIIcon = GameObject.Find("Icon").GetComponent<Image>();
+        //textDesc = GameObject.Find("Description").GetComponent<Text>();
+        //textStats = GameObject.Find("Stats").GetComponent<Text>();
 
-        followToggle = GameObject.Find("FollowToggle").GetComponent<Toggle>();
+        //followToggle = GameObject.Find("FollowToggle").GetComponent<Toggle>();
 
-        eventSystem = GameObject.Find("Canvas").GetComponent<EventSystem>();
+        //eventSystem = GameObject.Find("Canvas").GetComponent<EventSystem>();
 
         Invoke("ChangePanelContent", 0.01f);
     }
@@ -89,10 +90,11 @@ public class MissionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-            cameraZPosition.Translate(0, 0,Input.GetAxis("Mouse ScrollWheel"));
-            
+
+        camOrthPos += Input.GetAxis("Mouse ScrollWheel");
+        camOrthPos = Mathf.Clamp(3, 10, camOrthPos);
+        //cameraZPosition.Translate(0, 0,Input.GetAxis("Mouse ScrollWheel"));
+        mainCam.orthographicSize = camOrthPos;
             if(cameraZPosition.transform.position.y>=50)
                 {
             float camZ = cameraZPosition.position.y;
@@ -118,10 +120,9 @@ public class MissionScript : MonoBehaviour
             centerPosition.Rotate(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0, Space.World);
         }
 
-        if (followToggle.isOn == true)
-        {
+        
             CameraFollow();
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.C) && isCamMoving ==false)
         {
@@ -131,40 +132,40 @@ public class MissionScript : MonoBehaviour
 
             if (agentsListIndex > agentsList.Count - 1)
             { agentsListIndex = 0; }
-            ChangePanelContent();
+            // ChangePanelContent();
             this.StartCoroutine(this.MoveCamera());
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1) && isCamMoving == false )
-        {
-            previousAgentsListIndex = agentsListIndex;
-            agentsListIndex = 0;
-            ChangePanelContent();
-            this.StartCoroutine(this.MoveCamera());
-            //MoveCamera(Mathf.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[agentsListIndex].transform.position,);
+        //if (Input.GetKeyDown(KeyCode.Keypad1) && isCamMoving == false )
+        //{
+        //    previousAgentsListIndex = agentsListIndex;
+        //    agentsListIndex = 0;
+        //    ChangePanelContent();
+        //    this.StartCoroutine(this.MoveCamera());
+        //    //MoveCamera(Mathf.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[agentsListIndex].transform.position,);
 
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2) && isCamMoving == false )
-        {
-            previousAgentsListIndex = agentsListIndex;
-            agentsListIndex = 1;
-            ChangePanelContent();
-            this.StartCoroutine(this.MoveCamera());
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3) && isCamMoving == false )
-        {
-            previousAgentsListIndex = agentsListIndex;
-            agentsListIndex = 2;
-            ChangePanelContent();
-            this.StartCoroutine(this.MoveCamera());
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4) && isCamMoving == false )
-        {
-            previousAgentsListIndex = agentsListIndex;
-            agentsListIndex = 3;
-            ChangePanelContent();
-            this.StartCoroutine(this.MoveCamera());
-        }
+        //}
+        //if (Input.GetKeyDown(KeyCode.Keypad2) && isCamMoving == false )
+        //{
+        //    previousAgentsListIndex = agentsListIndex;
+        //    agentsListIndex = 1;
+        //    ChangePanelContent();
+        //    this.StartCoroutine(this.MoveCamera());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Keypad3) && isCamMoving == false )
+        //{
+        //    previousAgentsListIndex = agentsListIndex;
+        //    agentsListIndex = 2;
+        //    ChangePanelContent();
+        //    this.StartCoroutine(this.MoveCamera());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Keypad4) && isCamMoving == false )
+        //{
+        //    previousAgentsListIndex = agentsListIndex;
+        //    agentsListIndex = 3;
+        //    ChangePanelContent();
+        //    this.StartCoroutine(this.MoveCamera());
+        //}
 
 
 
@@ -192,13 +193,13 @@ public class MissionScript : MonoBehaviour
         FrameCount++;
     }
 
-    void ChangePanelContent()
-    {
-        textName.text = agentsList[agentsListIndex].GetComponent<agentProperties>().agentName;
-        UIIcon.sprite = agentsList[agentsListIndex].GetComponent<agentProperties>().icon;
-        textDesc.text = agentsList[agentsListIndex].GetComponent<agentProperties>().description;
-        textStats.text = "Speed : " + agentsList[agentsListIndex].GetComponent<agentProperties>().speed.ToString() + "\n" + "Agility : " + agentsList[agentsListIndex].GetComponent<agentProperties>().agility.ToString() + "\n" + "Strength : " + agentsList[agentsListIndex].GetComponent<agentProperties>().strength.ToString() + "\n" + "Stamina : " + agentsList[agentsListIndex].GetComponent<agentProperties>().stamina.ToString();
-    }
+    //void ChangePanelContent()
+    //{
+    //    textName.text = agentsList[agentsListIndex].GetComponent<agentProperties>().agentName;
+    //    UIIcon.sprite = agentsList[agentsListIndex].GetComponent<agentProperties>().icon;
+    //    textDesc.text = agentsList[agentsListIndex].GetComponent<agentProperties>().description;
+    //    textStats.text = "Speed : " + agentsList[agentsListIndex].GetComponent<agentProperties>().speed.ToString() + "\n" + "Agility : " + agentsList[agentsListIndex].GetComponent<agentProperties>().agility.ToString() + "\n" + "Strength : " + agentsList[agentsListIndex].GetComponent<agentProperties>().strength.ToString() + "\n" + "Stamina : " + agentsList[agentsListIndex].GetComponent<agentProperties>().stamina.ToString();
+    //}
 
     void TimeSpent()
     {
