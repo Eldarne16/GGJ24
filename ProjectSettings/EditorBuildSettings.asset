@@ -41,4 +41,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DTA_SCENE.unity
     guid: 879396380d5b08342bf45f63a22c85ff
+  - enabled: 1
+    path: Assets/Scenes/EatThePussy_SCENE 1.unity
+    guid: 7df6e319d9e44654091b57058be6051e
+  - enabled: 1
+    path: Assets/Scenes/EatThePussy_SCENE.unity
+    guid: ee7450174289a8148bb6d7dea3e941e8
+  - enabled: 1
+    path: Assets/Scenes/GrupUnderwater_SCENE.unity
+    guid: e604cae4d2241884187acfa2c35169ff
   m_configObjects: {}

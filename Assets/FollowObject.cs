@@ -34,10 +34,10 @@ public class FollowObject : MonoBehaviour
 
     IEnumerator ChangeYOffset()
     {
+        float originalOffY = offY;
         while(true)
         {
             float originalY = _targetObject.transform.position.y;
-            float originalOffY = offY;
             float currentDiff = originalY - _targetObject.transform.position.y;
             float newOffY = originalOffY - currentDiff;
             Debug.Log(newOffY);

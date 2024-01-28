@@ -10,7 +10,6 @@ public class SimplePlatformerController : MonoBehaviour
     private bool _isGrounded;
     [SerializeField]
     private Transform groundCheck;
-    private float groundCheckRadius = 0.1f;
 
     [SerializeField]
     private GameObject _graphicHolder;

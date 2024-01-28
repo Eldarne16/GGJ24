@@ -3067,7 +3067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetObject: {fileID: 1693146423}
   offX: 16
-  offY: 1.1
+  offY: -64
   offZ: -101
 --- !u!1 &1420299650
 GameObject:
