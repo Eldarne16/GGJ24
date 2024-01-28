@@ -113,7 +113,10 @@ public class DTASCRIPT : MonoBehaviour
         else
         {
             currentValue = 0;
-            OnColorButtonClicked(currentValue);
+            if (LOSTSAYMONSI != true && SAYMONISSAYING != true)
+            {
+                OnColorButtonClicked(currentValue);
+            }
         }
     }
 
@@ -132,7 +135,10 @@ public class DTASCRIPT : MonoBehaviour
         else
         {
             currentValue = 1;
-            OnColorButtonClicked(currentValue);
+            if (LOSTSAYMONSI != true && SAYMONISSAYING != true)
+            {
+                OnColorButtonClicked(currentValue);
+            }
         }
 
     }
@@ -152,8 +158,11 @@ public class DTASCRIPT : MonoBehaviour
         }
         else
         {
-            currentValue = 2;
-            OnColorButtonClicked(currentValue);
+                currentValue = 2;
+            if (LOSTSAYMONSI != true && SAYMONISSAYING != true)
+            {
+                OnColorButtonClicked(currentValue);
+            }
         }
     }
 
@@ -173,7 +182,10 @@ public class DTASCRIPT : MonoBehaviour
         else
         {
             currentValue = 3;
-            OnColorButtonClicked(currentValue);
+            if (LOSTSAYMONSI != true && SAYMONISSAYING != true)
+            {
+                OnColorButtonClicked(currentValue);
+            }
         }
     }
 
@@ -197,7 +209,10 @@ public class DTASCRIPT : MonoBehaviour
         else
         {
             currentValue = 4;
-            OnColorButtonClicked(currentValue);
+            if (LOSTSAYMONSI != true && SAYMONISSAYING != true)
+            {
+                OnColorButtonClicked(currentValue);
+            }
         }
     }
 
@@ -215,6 +230,7 @@ public class DTASCRIPT : MonoBehaviour
     int currentValue;
     bool SAYMONSISTARTED = false;
     bool LOSTSAYMONSI = false;
+    bool SAYMONISSAYING = false;
     List<int> SAYMONSIINDICES = new List<int>();
     float SAYMONSISPEED = 1.6f;
 
@@ -401,7 +417,8 @@ public class DTASCRIPT : MonoBehaviour
 
     void StartDisplaySequence()
     {
-        text.text = "I SAY : " + sequence[currentSequenceIndex];
+        SAYMONISSAYING = true;
+        text.text = "I SAY : ";
         
         StartCoroutine(LIGHTBUTTON(sequence[currentSequenceIndex], SAYMONSISPEED));
         StartCoroutine(DisplaySequence());
@@ -420,6 +437,7 @@ public class DTASCRIPT : MonoBehaviour
         }
         else
         {
+            SAYMONISSAYING = false;
             currentSequenceIndex = 0;
             awaitingInput = true;
             text.text = "Your turn...";
@@ -472,6 +490,7 @@ public class DTASCRIPT : MonoBehaviour
             }
             else
             {
+                LOSTSAYMONSI = true;
                 StartCoroutine(LevelEnd());
             }
         }
@@ -489,19 +508,19 @@ IEnumerator LIGHTBUTTON(ColorSAYMONSI color, float duration)
         switch(color)
         {
             case ColorSAYMONSI.RED:
-                actualColor = Color.red;
+                actualColor = new Color(1, 0, 0, 0.7f) ;
                 break;
             case ColorSAYMONSI.YELLOW:
-                actualColor = Color.yellow;
+                actualColor = new Color(1, 1, 0, 0.7f);
                 break;
             case ColorSAYMONSI.GREEN:
-                actualColor = Color.green;
+                actualColor = new Color(0, 1, 0, 0.7f);
                 break;
             case ColorSAYMONSI.BLUE:
-                actualColor = Color.blue;
+                actualColor = new Color(0, 0, 1, 0.7f);
                 break;
             case ColorSAYMONSI.PURPLE:
-                actualColor = Color.magenta;
+                actualColor = new Color(1, 0, 1, 0.7f);
                 break;
         }
         SAYMONSI.color = actualColor;
