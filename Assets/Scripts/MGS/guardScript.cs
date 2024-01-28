@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class guardScript : MonoBehaviour
 {
+
+
+
     NavMeshAgent guardAgent;
     public List<string> Orders = new List<string>();
     int orderIndex = 0;
@@ -21,7 +24,9 @@ public class guardScript : MonoBehaviour
 
     GameObject target;
 
-    float guardStoppingDistance = 0.5f;
+    float guardStoppingDistance = 1.2f;
+
+    bool hasOrder = false;
 
     void Start()
     {
@@ -38,7 +43,12 @@ public class guardScript : MonoBehaviour
         //string currentOrderParams = this.Orders[orderIndex].Substring(5);
         //Debug.Log(currentOrder + currentOrderParams);
 
+
+        if (hasOrder == false)
+        {
+            hasOrder = true;
         StartCoroutine(currentOrder);
+        }
 
         //incrementOrderIndex();
 
@@ -55,6 +65,7 @@ public class guardScript : MonoBehaviour
 
     void nextOrder()
     {
+     
         this.StopAllCoroutines();
         if (hasCompletedOrder == true)
         {
@@ -62,13 +73,18 @@ public class guardScript : MonoBehaviour
             readCurrentOrder();
         }
     }
+
+
+    /// <summary>
+    /// TU PEUX PTET FAIRE INVOKE BOLOSSSS !!!
+    /// </summary>
+    /// <returns></returns>
+
     IEnumerator GOTO()
     {
-        Vector3 GOTOPos;
-        //GOTOPos = new Vector3(GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.x, 0, GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.z);
-        int length = Orders[orderIndex].Length -5;
-        GOTOPos = Waypoints.GetWaypoints(int.Parse(Orders[orderIndex].Substring(5, length)));
 
+        Vector3 GOTOPos;
+        GOTOPos = new Vector3(GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.x, 0, GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.z);
         float distanceToWaypoint;
         guardAgent.destination = GOTOPos;
         distanceToWaypoint = Vector3.Distance(new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z), GOTOPos);
@@ -80,6 +96,7 @@ public class guardScript : MonoBehaviour
             if (distanceToWaypoint < guardStoppingDistance)
             {
                 hasCompletedOrder = true;
+                hasOrder = false;
                 nextOrder();
             }
             yield return null;
@@ -98,7 +115,50 @@ public class guardScript : MonoBehaviour
 
         yield return null;
 
+        //Vector3 GOTOPos;
+        ////GOTOPos = new Vector3(GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.x, 0, GameObject.Find(Orders[orderIndex].Substring(5)).transform.position.z);
+        ////int length = Orders[orderIndex].Length -5;
+        //GOTOPos = Waypoints.GetWaypoints(int.Parse(Orders[orderIndex].Substring(5)));
+        
+        ////float distanceToWaypoint;
+        //guardAgent.destination = GOTOPos;
+        ////distanceToWaypoint = Vector3.Distance(new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z), GOTOPos);
 
+        //if (Vector3.Distance(gameObject.transform.position, GOTOPos) < guardStoppingDistance)
+        //{
+        //    //distanceToWaypoint = Vector3.Distance(gameObject.transform.position, GOTOPos);
+        //    //Debug.Log(distanceToWaypoint + " ||| " + guardStoppingDistance);
+            
+        //    hasCompletedOrder = true;
+        //    nextOrder();
+        //    hasOrder = false;
+        //    yield return null;
+        //}
+        ///* {
+
+        //     distanceToWaypoint = Vector3.Distance(this.gameObject.transform.position, GOTOPos);
+             
+        //     yield return new WaitWhile(distanceToWaypoint >= guardAgent.stoppingDistance);
+        //     if (distanceToWaypoint < guardAgent.stoppingDistance)
+        //     {
+        //         yield return hasCompletedOrder = true;
+        //     }
+        //     yield return null;
+        // }*/
+
+        //yield return null;
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 20)
+        {
+
+            Debug.Log("LOST");
+        }
+                
     }
 
     IEnumerator WAIT()
@@ -117,6 +177,7 @@ public class guardScript : MonoBehaviour
         {
             hasCompletedOrder = true;
             nextOrder();
+            hasOrder = false;
         }
         yield return null;
     }
@@ -143,8 +204,8 @@ public class guardScript : MonoBehaviour
     {
         GameObject chasedIntruder = intruder;
         //StopAllCoroutines();
-        Debug.Log("yepyepyep");
-        while (Vector3.Distance(gameObject.transform.position, chasedIntruder.transform.position) >= 1.6f)
+        
+        while (Vector3.Distance(gameObject.transform.position, chasedIntruder.transform.position) >= 16f)
         {
             guardAgent.destination = chasedIntruder.transform.position;
             yield return null;
@@ -155,7 +216,7 @@ public class guardScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(System.DateTime.Now);
+        //Debug.Log(System.DateTime.Now);
 
         //if (isActivated == true)
         //{
@@ -170,13 +231,11 @@ public class guardScript : MonoBehaviour
                 {
                     if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out hit, 20, detectAgents))
                     {
-
+                        
                         target = hit.collider.gameObject;
                         Debug.DrawRay(transform.position + new Vector3(0, 0.4f, 0), this.transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)) * hit.distance, Color.red);
 
                         IntruderDetected(hit.collider.gameObject);
-
-                        // Debug.Log("Did Hit");
                     }
 
                 }
