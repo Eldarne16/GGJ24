@@ -45,18 +45,10 @@ public class MissionScript : MonoBehaviour
 
     [SerializeField]
     float mouseSensitivity;
-
-    Text textName;
-    Image UIIcon;
-    Text textDesc;
-    Text textStats;
-
-    Toggle followToggle;
+    float elapsedTime = 0;
 
  
     public bool followAgent = true;
-    [SerializeField]
-    private AnimationCurve camCurve;
 
     public int nbrAgents;
     public List<GameObject> AgentPrefabs = new List<GameObject>();
@@ -79,7 +71,6 @@ public class MissionScript : MonoBehaviour
         TimeValue = 1 * Time.deltaTime;
         cameraZPosition = mainCam.transform;
         centerPosition = GameObject.Find("SpawnPoint0").transform;
-        InvokeRepeating("TimeSpent", 0, 1);
         targetDirection = new Vector3(0, 0, 0) - cameraZPosition.position;
 
 
@@ -109,7 +100,7 @@ public class MissionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        elapsedTime += Time.deltaTime;
         camOrthPos += Input.GetAxis("Mouse ScrollWheel");
         camOrthPos = Mathf.Clamp(3, 10, camOrthPos);
         //cameraZPosition.Translate(0, 0,Input.GetAxis("Mouse ScrollWheel"));
@@ -142,7 +133,10 @@ public class MissionScript : MonoBehaviour
         
             CameraFollow();
         
-
+        if(elapsedTime >= 30)
+        {
+            WinOrLose(true);
+        }
         //if (Input.GetKeyDown(KeyCode.C) && isCamMoving ==false)
         //{
         //    previousAgentsListIndex = agentsListIndex;
@@ -220,35 +214,34 @@ public class MissionScript : MonoBehaviour
     //    textStats.text = "Speed : " + agentsList[agentsListIndex].GetComponent<agentProperties>().speed.ToString() + "\n" + "Agility : " + agentsList[agentsListIndex].GetComponent<agentProperties>().agility.ToString() + "\n" + "Strength : " + agentsList[agentsListIndex].GetComponent<agentProperties>().strength.ToString() + "\n" + "Stamina : " + agentsList[agentsListIndex].GetComponent<agentProperties>().stamina.ToString();
     //}
 
-    void TimeSpent()
-    {
-        timeSpent = FrameCount * TimeValue;
-    }
+ 
 
     void CameraFollow()
     {
-        centerPosition.position = agentsList[0].transform.position;
+        Vector3 camPos = new Vector3(agentsList[0].transform.position.x, mainCam.transform.position.y, agentsList[0].transform.position.z);
+
+        mainCam.transform.position = camPos;
     }
 
 
-    IEnumerator MoveCamera()
-    {
-        float lerpTime = 0.0f;
-        float waitTime = 0.25f;
+    //IEnumerator MoveCamera()
+    //{
+    //    float lerpTime = 0.0f;
+    //    float waitTime = 0.25f;
        
         
-        while(lerpTime <waitTime)
-            {
-            isCamMoving = true;
-            centerPosition.position = Vector3.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[0].transform.position, camCurve.Evaluate(lerpTime/waitTime));
-            lerpTime += Time.deltaTime;
+    //    while(lerpTime <waitTime)
+    //        {
+    //        isCamMoving = true;
+    //        centerPosition.position = Vector3.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[0].transform.position, camCurve.Evaluate(lerpTime/waitTime));
+    //        lerpTime += Time.deltaTime;
             
-           yield return null;
-        }
-        isCamMoving = false;
+    //       yield return null;
+    //    }
+    //    isCamMoving = false;
         
-        yield return null;
-    }
+    //    yield return null;
+    //}
 
 
     IEnumerator LevelEnd()
