@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ea83c284aab5e84498a9ff91c3a6dd34
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bloody Frozen
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1a42de67aa4c0ef4b852274038fa343d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

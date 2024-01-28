@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class PasswordSceneHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,6 +13,7 @@ public class PasswordSceneHandler : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField]
     TMP_InputField _passwordInputField;
     Infos infos;
+    bool _hasWon = false;
     private void Awake()
     {
         infos = Infos.instance;
@@ -59,9 +61,23 @@ public class PasswordSceneHandler : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            Debug.Log("Enter pressed, input field value: " + text);
-            // Your submit logic here
+            if(text == "0")
+            {
+                _hasWon = true;
+            }
+            Debug.Log(_hasWon);
+            infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
         }
+    }
+
+    public void HandleSubmit()
+    {
+        if (_passwordInputField.text == "0")
+        {
+            _hasWon = true;
+        }
+        Debug.Log(_hasWon);
+        infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
     }
 
     private void HandleChange(string text)
