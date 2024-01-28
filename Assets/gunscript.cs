@@ -5,7 +5,7 @@ using UnityEngine;
 public class gunscript : MonoBehaviour
 {
     Infos _infos;
-    SceneHandler _sceneHandler;
+
 
     public GameObject GunPoint;
 
@@ -14,7 +14,7 @@ public class gunscript : MonoBehaviour
     private void Awake()
     {
         _infos = Infos.instance;
-        _sceneHandler = _infos.GetHandler<SceneHandler>();
+
     }
     private void Update()
     {
@@ -54,7 +54,7 @@ public class gunscript : MonoBehaviour
     IEnumerator LevelEnd()
     {
         yield return new WaitForSeconds(2);
-        _sceneHandler.NextLevel(_hasWon);
+        _infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
 
     }
 

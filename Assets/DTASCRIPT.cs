@@ -6,7 +6,7 @@ public class DTASCRIPT : MonoBehaviour
 {
 
     Infos _infos;
-    SceneHandler _sceneHandler;
+
 
     public GameObject buttonObject;
 
@@ -18,7 +18,6 @@ public class DTASCRIPT : MonoBehaviour
     private void Awake()
     {
         _infos = Infos.instance;
-        _sceneHandler = _infos.GetHandler<SceneHandler>();
 
         text = FindObjectOfType<UnityEngine.UI.Text>();
     }
@@ -34,15 +33,16 @@ public class DTASCRIPT : MonoBehaviour
         }
         else
         {
+            elapsedTime = 27;
             text.color = Color.red * 0.8f;
             text.text = "WHAT DID I TOLD YOU !!??";
         }
 
         yield return new WaitForSeconds(2);
-        _sceneHandler.NextLevel(_hasWon);
+        _infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
 
     }
-
+    
 
     float elapsedTime = 0;
     
@@ -51,7 +51,7 @@ public class DTASCRIPT : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-        if(elapsedTime >= 30)
+        if(elapsedTime >= 20)
         {
             if(_hasClicked == true)
             {
@@ -71,6 +71,7 @@ public class DTASCRIPT : MonoBehaviour
     public void DONTCLICK()
     {
         Debug.Log("Clicked");
+        elapsedTime = 17;
         _hasClicked = true;
         buttonObject.transform.Translate(0, 0, -0.2f,Space.Self); 
     }
