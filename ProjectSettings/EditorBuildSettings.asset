@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MGS_SCENE.unity
     guid: fe1993ccf0bc19d49836964b307d3057
+  - enabled: 1
+    path: Assets/Scenes/DTA_SCENE.unity
+    guid: 879396380d5b08342bf45f63a22c85ff
   m_configObjects: {}
