@@ -465,14 +465,14 @@ public class DTASCRIPT : MonoBehaviour
                     AddColorToSequence();
                     StartDisplaySequence();
                 }
-                else
-                {
-                    LevelEnd();
-                }
+                //else
+                //{
+                //    StartCoroutine(LevelEnd());
+                //}
             }
             else
             {
-                LevelEnd();
+                StartCoroutine(LevelEnd());
             }
         }
     }
