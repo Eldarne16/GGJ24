@@ -1205,10 +1205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Orders:
-  - GOTO_Waypoint7
-  - GOTO_Waypoint14
+  - GOTO_Waypoint11
   - GOTO_Waypoint15
-  - GOTO_Waypoint18
+  - GOTO_Waypoint14
+  - GOTO_Waypoint12
   - GOTO_Waypoint19
   hasCompletedOrder: 0
   detectAgents:
