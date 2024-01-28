@@ -8,6 +8,25 @@ using UnityEngine.EventSystems;
 
 public class MissionScript : MonoBehaviour
 {
+
+    Infos _infos;
+    SceneHandler _sceneHandler;
+
+    bool _hasWon;
+
+    public void WinOrLose(bool hasWon)
+    {
+        _hasWon = hasWon;
+        StartCoroutine(LevelEnd());
+
+    }
+
+    private void Awake()
+    {
+        _infos = Infos.instance;
+        _sceneHandler = _infos.GetHandler<SceneHandler>();
+    }
+
     [SerializeField]
     FullScreenMode fullScreenMode;
     [SerializeField]
@@ -107,7 +126,7 @@ public class MissionScript : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
 
-            followToggle.isOn = false;
+            //followToggle.isOn = false;
             centerPosition.Translate(-Input.GetAxis("Mouse X"), 0, -Input.GetAxis("Mouse Y"), Space.Self);
 
             Debug.DrawLine(centerPosition.position, new Vector3(0, 0, 0));
@@ -124,17 +143,17 @@ public class MissionScript : MonoBehaviour
             CameraFollow();
         
 
-        if (Input.GetKeyDown(KeyCode.C) && isCamMoving ==false)
-        {
-            previousAgentsListIndex = agentsListIndex;
-            agentsListIndex++;
+        //if (Input.GetKeyDown(KeyCode.C) && isCamMoving ==false)
+        //{
+        //    previousAgentsListIndex = agentsListIndex;
+        //    agentsListIndex++;
 
 
-            if (agentsListIndex > agentsList.Count - 1)
-            { agentsListIndex = 0; }
-            // ChangePanelContent();
-            this.StartCoroutine(this.MoveCamera());
-        }
+        //    if (agentsListIndex > agentsList.Count - 1)
+        //    { agentsListIndex = 0; }
+        //    // ChangePanelContent();
+        //    this.StartCoroutine(this.MoveCamera());
+        //}
 
         //if (Input.GetKeyDown(KeyCode.Keypad1) && isCamMoving == false )
         //{
@@ -178,8 +197,6 @@ public class MissionScript : MonoBehaviour
 
                 if (!eventSystem.IsPointerOverGameObject())
                 {
-
-                    Debug.Log("tes la");
                     mousePos = hit.point;
 
                     agentsList[0].destination = mousePos;
@@ -210,7 +227,7 @@ public class MissionScript : MonoBehaviour
 
     void CameraFollow()
     {
-        centerPosition.position = agentsList[agentsListIndex].transform.position;
+        centerPosition.position = agentsList[0].transform.position;
     }
 
 
@@ -223,7 +240,7 @@ public class MissionScript : MonoBehaviour
         while(lerpTime <waitTime)
             {
             isCamMoving = true;
-            centerPosition.position = Vector3.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[agentsListIndex].transform.position, camCurve.Evaluate(lerpTime/waitTime));
+            centerPosition.position = Vector3.Lerp(agentsList[previousAgentsListIndex].transform.position, agentsList[0].transform.position, camCurve.Evaluate(lerpTime/waitTime));
             lerpTime += Time.deltaTime;
             
            yield return null;
@@ -234,6 +251,13 @@ public class MissionScript : MonoBehaviour
     }
 
 
+    IEnumerator LevelEnd()
+    {
 
+        Debug.Log("has won : " + _hasWon);
+        yield return new WaitForSeconds(2);
+        _sceneHandler.NextLevel(_hasWon);
+
+    }
 
 }
