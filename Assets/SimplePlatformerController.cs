@@ -14,6 +14,10 @@ public class SimplePlatformerController : MonoBehaviour
 
     [SerializeField]
     private GameObject _graphicHolder;
+    [SerializeField]
+    private GameObject _underwaterBreathing;
+    [SerializeField]
+    private FollowObject _followObject;
 
 
     private void Start()
@@ -27,6 +31,11 @@ public class SimplePlatformerController : MonoBehaviour
         if(collision.gameObject.layer == 8)
         {
             Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
+        }
+        if(collision.gameObject.layer == 4)
+        {
+            _underwaterBreathing.SetActive(true);
+            _followObject.StartChangeOffset();
         }
     }
 

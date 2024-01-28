@@ -5,19 +5,27 @@ using UnityEngine;
 public class EatThePussyHandler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] _pictures;
+    private GameObject _picture;
     public void HasWon()
     {
-        Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
+        StartCoroutine(WaitForEnd(true));
     }
 
     public void HasLost()
     {
-        Infos.instance.GetHandler<SceneHandler>().NextLevel(false);
+        StartCoroutine(WaitForEnd(false));
     }
 
     IEnumerator WaitForEnd(bool hasWon)
     {
-        yield return new WaitForSeconds(3);
+        if(hasWon) { 
+            _picture.SetActive(true);
+            yield return new WaitForSeconds(3);
+            Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
+        }
+        else
+        {
+            Infos.instance.GetHandler<SceneHandler>().NextLevel(false);
+        }
     }
 }
