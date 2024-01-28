@@ -7,7 +7,7 @@ public class guardScript : MonoBehaviour
 {
 
 
-
+    MissionScript ms;
     NavMeshAgent guardAgent;
     public List<string> Orders = new List<string>();
     int orderIndex = 0;
@@ -30,7 +30,7 @@ public class guardScript : MonoBehaviour
 
     void Start()
     {
-
+        ms = FindObjectOfType<MissionScript>();
         guardAgent = this.gameObject.GetComponent<NavMeshAgent>();
         Invoke("readCurrentOrder", 0);
     }
@@ -169,7 +169,7 @@ public class guardScript : MonoBehaviour
         while (elapsedTime < waitTime)
         {
             elapsedTime += Time.deltaTime;
-            gameObject.transform.Rotate(Vector3.up, Mathf.Lerp(0.0f, Mathf.Sin(8), waitTime / elapsedTime));
+            gameObject.transform.Rotate(Vector3.up, Mathf.Lerp(0.0f, Mathf.Sin(-8), waitTime / elapsedTime));
 
             yield return null;
         }
@@ -204,11 +204,11 @@ public class guardScript : MonoBehaviour
     {
         GameObject chasedIntruder = intruder;
         //StopAllCoroutines();
-        
+        Debug.Log("CHASE !!!");
         while (Vector3.Distance(gameObject.transform.position, chasedIntruder.transform.position) >= 16f)
         {
-            guardAgent.destination = chasedIntruder.transform.position;
-            yield return null;
+            guardAgent.destination = ms.AgentPrefabs[0].transform.position;
+            yield return new WaitForSeconds(30);
         }
         readCurrentOrder();
         
@@ -224,10 +224,11 @@ public class guardScript : MonoBehaviour
         for (int i = -16; i < 32; i++)
             {
                 Debug.DrawRay(transform.position + new Vector3(0, 0.4f, 0), this.transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)) * 20, Color.yellow);
+            RaycastHit obstacleHit;
                 RaycastHit hit;
                 // Does the ray intersect any objects excluding the player layer
                 //gameObject.transform.Rotate(new Vector3(0, i, 0));
-                if (!Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out hit, 20, detectObstacles))
+                if (!Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out obstacleHit, 20, detectObstacles))
                 {
                     if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out hit, 20, detectAgents))
                     {
@@ -239,9 +240,9 @@ public class guardScript : MonoBehaviour
                     }
 
                 }
-                else if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out hit, 20, detectObstacles))
+                else if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)), out obstacleHit, 20, detectObstacles))
                 {
-                    Debug.DrawRay(transform.position + new Vector3(0, 0.4f, 0), this.transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)) * hit.distance, Color.green);
+                    Debug.DrawRay(transform.position + new Vector3(0, 0.4f, 0), this.transform.TransformDirection(Vector3.forward + (new Vector3(i - 4, 0, 0) / 20)) * obstacleHit.distance, Color.green);
                     //Debug.Log("Did not Hit");
                 }
 

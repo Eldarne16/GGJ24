@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class AgentCaught : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+
+    public bool collisionEntered = false;
+    private void OnCollisionEnter(Collision collision)
     {
 
 
-        if(collision.gameObject.tag == "MAN")
+        if(collision.collider.gameObject.tag == "MAN")
         {
+            collisionEntered = true;
             MissionScript ms = FindObjectOfType<MissionScript>();
-            Debug.Log("JE SUIS LAAAAA");
-            StartCoroutine("ms.WinOrLose", false);
+            ms.WinOrLose(false);
+           
         }
                 
     }
+
+ 
 }
