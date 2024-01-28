@@ -10,7 +10,7 @@ public class MissionScript : MonoBehaviour
 {
 
     Infos _infos;
-    SceneHandler _sceneHandler;
+
 
     bool _hasWon;
 
@@ -24,7 +24,7 @@ public class MissionScript : MonoBehaviour
     private void Awake()
     {
         _infos = Infos.instance;
-        _sceneHandler = _infos.GetHandler<SceneHandler>();
+
     }
 
     [SerializeField]
@@ -249,7 +249,7 @@ public class MissionScript : MonoBehaviour
 
         Debug.Log("has won : " + _hasWon);
         yield return new WaitForSeconds(2);
-        _sceneHandler.NextLevel(_hasWon);
+        _infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
 
     }
 
