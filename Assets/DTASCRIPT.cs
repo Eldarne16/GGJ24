@@ -68,11 +68,43 @@ public class DTASCRIPT : MonoBehaviour
         }
     }
 
-    public void DONTCLICK()
+    public void DONTCLICKRED()
     {
-        Debug.Log("Clicked");
+        Debug.Log("Clicked RED");
         elapsedTime = 17;
         _hasClicked = true;
         buttonObject.transform.Translate(0, 0, -0.2f,Space.Self); 
+    }
+
+    public void DONTCLICKYELLOW()
+    {
+        Debug.Log("Clicked YELLOW");
+        elapsedTime = 17;
+        _hasClicked = true;
+        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+    }
+
+    public void DONTCLICKGREEN()
+    {
+        Debug.Log("Clicked GREEN");
+        elapsedTime = 17;
+        _hasClicked = true;
+        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+    }
+
+    public void DONTCLICKPURPLE()
+    {
+        Debug.Log("Clicked PURPLE");
+        elapsedTime = 17;
+        _hasClicked = true;
+        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+    }
+    public void DONTCLICKBLUE()
+       
+    {
+        Debug.Log("Clicked BLUE");
+        elapsedTime = 17;
+        _hasClicked = true;
+        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
     }
 }
