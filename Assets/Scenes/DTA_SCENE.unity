@@ -1626,6 +1626,10 @@ MonoBehaviour:
   BLUE: {fileID: 1568283849}
   PURPLE: {fileID: 885456678}
   SAYMONSI: {fileID: 28090846}
+  colorButtons: []
+  initialDisplayDuration: 10
+  minDisplayDuration: 0.2
+  displaySpeedupFactor: 0.95
 --- !u!1 &2362529411626942222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1642,7 @@ GameObject:
   - component: {fileID: 5080640330375008015}
   - component: {fileID: 8867610100102242758}
   m_Layer: 0
-  m_Name: Circle.BLUE
+  m_Name: BLUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,7 +1740,7 @@ GameObject:
   - component: {fileID: 9065562243475867641}
   - component: {fileID: 5622995089319325604}
   m_Layer: 0
-  m_Name: Circle.PURPLE
+  m_Name: PURPLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,7 +1817,7 @@ GameObject:
   - component: {fileID: 3631933210089715458}
   - component: {fileID: 8442510506072025615}
   m_Layer: 0
-  m_Name: Circle.RED
+  m_Name: RED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1896,7 +1900,7 @@ GameObject:
   - component: {fileID: 4219138327063705384}
   - component: {fileID: 360455390630410701}
   m_Layer: 0
-  m_Name: Circle.YELLOW
+  m_Name: YELLOW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1929,7 +1933,7 @@ GameObject:
   - component: {fileID: 7825239749492551030}
   - component: {fileID: 2921780736903632028}
   m_Layer: 0
-  m_Name: Circle.GREEN
+  m_Name: GREEN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
