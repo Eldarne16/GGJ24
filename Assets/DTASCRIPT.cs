@@ -8,7 +8,11 @@ public class DTASCRIPT : MonoBehaviour
     Infos _infos;
 
 
-    public GameObject buttonObject;
+    public GameObject REDbutton;
+    public GameObject YELLOWbutton;
+    public GameObject GREENbutton;
+    public GameObject BLUEbutton;
+    public GameObject PURPLEbutton;
 
     UnityEngine.UI.Text text;
 
@@ -73,7 +77,7 @@ public class DTASCRIPT : MonoBehaviour
         Debug.Log("Clicked RED");
         elapsedTime = 17;
         _hasClicked = true;
-        buttonObject.transform.Translate(0, 0, -0.2f,Space.Self); 
+        REDbutton.transform.Translate(0, 0, -0.2f,Space.Self); 
     }
 
     public void DONTCLICKYELLOW()
@@ -81,7 +85,7 @@ public class DTASCRIPT : MonoBehaviour
         Debug.Log("Clicked YELLOW");
         elapsedTime = 17;
         _hasClicked = true;
-        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+        YELLOWbutton.transform.Translate(0, 0, -0.2f, Space.Self);
     }
 
     public void DONTCLICKGREEN()
@@ -89,7 +93,7 @@ public class DTASCRIPT : MonoBehaviour
         Debug.Log("Clicked GREEN");
         elapsedTime = 17;
         _hasClicked = true;
-        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+        GREENbutton.transform.Translate(0, 0, -0.2f, Space.Self);
     }
 
     public void DONTCLICKPURPLE()
@@ -97,7 +101,7 @@ public class DTASCRIPT : MonoBehaviour
         Debug.Log("Clicked PURPLE");
         elapsedTime = 17;
         _hasClicked = true;
-        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+        PURPLEbutton.transform.Translate(0, 0, -0.2f, Space.Self);
     }
     public void DONTCLICKBLUE()
        
@@ -105,6 +109,6 @@ public class DTASCRIPT : MonoBehaviour
         Debug.Log("Clicked BLUE");
         elapsedTime = 17;
         _hasClicked = true;
-        buttonObject.transform.Translate(0, 0, -0.2f, Space.Self);
+        BLUEbutton.transform.Translate(0, 0, -0.2f, Space.Self);
     }
 }

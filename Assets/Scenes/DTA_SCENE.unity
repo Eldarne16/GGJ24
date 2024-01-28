@@ -269,7 +269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c2762ce353d9949b5d022dc109cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonObject: {fileID: 5233112405753367456}
+  REDbutton: {fileID: 5233112405753367456}
+  YELLOWbutton: {fileID: 5659953016749706470}
+  GREENbutton: {fileID: 6951373293607443810}
+  BLUEbutton: {fileID: 2362529411626942222}
+  PURPLEbutton: {fileID: 4151665617128193045}
 --- !u!114 &460021824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,7 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c2762ce353d9949b5d022dc109cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonObject: {fileID: 5233112405753367456}
+  REDbutton: {fileID: 5233112405753367456}
+  YELLOWbutton: {fileID: 5659953016749706470}
+  GREENbutton: {fileID: 6951373293607443810}
+  BLUEbutton: {fileID: 2362529411626942222}
+  PURPLEbutton: {fileID: 4151665617128193045}
 --- !u!114 &885456678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +749,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c2762ce353d9949b5d022dc109cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonObject: {fileID: 5233112405753367456}
+  REDbutton: {fileID: 5233112405753367456}
+  YELLOWbutton: {fileID: 5659953016749706470}
+  GREENbutton: {fileID: 6951373293607443810}
+  BLUEbutton: {fileID: 2362529411626942222}
+  PURPLEbutton: {fileID: 4151665617128193045}
 --- !u!114 &1568283849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,7 +967,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c2762ce353d9949b5d022dc109cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonObject: {fileID: 5233112405753367456}
+  REDbutton: {fileID: 5233112405753367456}
+  YELLOWbutton: {fileID: 5659953016749706470}
+  GREENbutton: {fileID: 6951373293607443810}
+  BLUEbutton: {fileID: 2362529411626942222}
+  PURPLEbutton: {fileID: 4151665617128193045}
 --- !u!114 &1636812051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,7 +1304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c2762ce353d9949b5d022dc109cf2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonObject: {fileID: 5233112405753367456}
+  REDbutton: {fileID: 5233112405753367456}
+  YELLOWbutton: {fileID: 5659953016749706470}
+  GREENbutton: {fileID: 6951373293607443810}
+  BLUEbutton: {fileID: 2362529411626942222}
+  PURPLEbutton: {fileID: 4151665617128193045}
 --- !u!114 &2059859996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,10 +1458,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6951869189481661313}
-  - {fileID: 6019343749684782674}
+  - {fileID: 5416978854555527005}
   - {fileID: 8064365923395185084}
   - {fileID: 3866156673258639968}
-  - {fileID: 5416978854555527005}
+  - {fileID: 6019343749684782674}
   - {fileID: 3745622628258130430}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1492,7 +1512,7 @@ GameObject:
   - component: {fileID: 5080640330375008015}
   - component: {fileID: 8867610100102242758}
   m_Layer: 0
-  m_Name: Circle.005
+  m_Name: Circle.BLUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,7 +1610,7 @@ GameObject:
   - component: {fileID: 9065562243475867641}
   - component: {fileID: 5622995089319325604}
   m_Layer: 0
-  m_Name: Circle.002
+  m_Name: Circle.PURPLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,7 +1687,7 @@ GameObject:
   - component: {fileID: 3631933210089715458}
   - component: {fileID: 8442510506072025615}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Circle.RED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1694,7 +1714,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450653251383963}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &5622995089319325604
 MeshRenderer:
@@ -1750,7 +1770,7 @@ GameObject:
   - component: {fileID: 4219138327063705384}
   - component: {fileID: 360455390630410701}
   m_Layer: 0
-  m_Name: Circle.006
+  m_Name: Circle.YELLOW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1769,7 +1789,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450653251383963}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6951373293607443810
 GameObject:
@@ -1783,7 +1803,7 @@ GameObject:
   - component: {fileID: 7825239749492551030}
   - component: {fileID: 2921780736903632028}
   m_Layer: 0
-  m_Name: Circle.003
+  m_Name: Circle.GREEN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
