@@ -100,8 +100,6 @@ public class Infos : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Your code here. This method will be called after a scene is loaded.
-        Debug.Log("Loaded scene: " + scene.name);
         CreateHandlersAtLoad();
     }
 

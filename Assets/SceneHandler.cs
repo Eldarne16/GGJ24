@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class SceneHandler : MonoBehaviour
 {
     private static SceneHandler _instance;
-    private string[] _sceneNames = new string[] { "HeyListen_SCENE", "DontFallToYourDeath_SCENE", "GunGame_Scene", "PlatformerSpike_SCENE", "Password_SCENE", "EatThePussy_SCENE", "EatThePussy_SCENE 1"/*, "MGS_SCENE"*/, "DTA_SCENE" };
+    private string[] _sceneNames = new string[] { "HeyListen_SCENE", "GunGame_Scene", "Password_SCENE"/*, "MGS_SCENE"*/, "DTA_SCENE" };
+    private string[][] _orderedScene = new string[][] { new string[] { "DontFallToYourDeath_SCENE", "PlatformerSpike_SCENE", "GrupUnderwater_SCENE" }, new string[] { "EatThePussy_SCENE", "EatThePussy_SCENE 1" } };
     private List<string> _currentSceneNamesList = new List<string>();
 
     private string _finalScene = "FinalScene_SCENE";
@@ -52,9 +54,16 @@ public class SceneHandler : MonoBehaviour
             shuffledList[i] = shuffledList[j];
             shuffledList[j] = temp;
         }
-        foreach (string s in shuffledList)
+
+        foreach (string[] orderedList in _orderedScene)
         {
-            Debug.Log(s);
+            MergeLists(new List<string>(orderedList), shuffledList);
+        }
+
+
+        foreach (string sceneName in shuffledList)
+        {
+            Debug.Log($"{sceneName}");
         }
         _currentSceneNamesList = shuffledList;
     }
@@ -107,6 +116,21 @@ public class SceneHandler : MonoBehaviour
     IEnumerator TransitionToGameOver()
     {
         yield return null;
+    }
+
+    public static List<T> MergeLists<T>(List<T> orderedList, List<T> randomList)
+    {
+        System.Random random = new System.Random();
+        int insertIndex = 0;
+
+        foreach (T item in orderedList)
+        {
+            insertIndex = random.Next(insertIndex, randomList.Count + 1);
+            randomList.Insert(insertIndex, item);
+            insertIndex++;
+        }
+
+        return randomList;
     }
 
 
