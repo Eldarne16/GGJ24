@@ -13,9 +13,13 @@ public class Splashes : MonoBehaviour
     Color ImmatureColor;
     Color NOAIColor;
     public Camera cam;
+
     
     private void Start()
     {
+        
+        
+        
         
         isRunning = true;
         IMMATURE.color = Color.clear;
@@ -40,19 +44,23 @@ public class Splashes : MonoBehaviour
         }
         if(elapsedTime > 3.6f)
         {
+            
             StartCoroutine(FadeOut(IMMATURE));
         }
         if (elapsedTime > 10.6f)
         {
+        
             StartCoroutine(ColorLerp(ImmatureColor, NOAIColor));
             StartCoroutine(FadeIn(NOAI));
         }
         if (elapsedTime > 14.6f)
         {
+            
             StartCoroutine(FadeOut(NOAI));
         }
         if(elapsedTime>20)
         {
+
             SceneManager.LoadScene("MainMenu");
         }
     }
