@@ -42,16 +42,16 @@ public class Splashes : MonoBehaviour
         {
             StartCoroutine(FadeOut(IMMATURE));
         }
-        if (elapsedTime > 8.6f)
+        if (elapsedTime > 10.6f)
         {
             StartCoroutine(ColorLerp(ImmatureColor, NOAIColor));
             StartCoroutine(FadeIn(NOAI));
         }
-        if (elapsedTime > 12.6f)
+        if (elapsedTime > 14.6f)
         {
             StartCoroutine(FadeOut(NOAI));
         }
-        if(elapsedTime>16)
+        if(elapsedTime>20)
         {
             SceneManager.LoadScene("MainMenu");
         }
