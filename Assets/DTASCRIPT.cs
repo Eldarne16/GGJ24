@@ -71,7 +71,7 @@ public class DTASCRIPT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SAYMONSISTARTED != true)
+        if (SAYMONSISTARTED != true)
         {
             elapsedTime += Time.deltaTime;
         }
@@ -100,7 +100,7 @@ public class DTASCRIPT : MonoBehaviour
             if (_hasClicked != true)
             {
                 Debug.Log("Clicked RED");
-                elapsedTime = 17;
+                elapsedTime = 27;
                 _hasClicked = true;
                 StartCoroutine(ButtonPressed(REDbutton,0));
                 //UnityEngine.UI.Button[] buttons = FindObjectsOfType<UnityEngine.UI.Button>();
@@ -127,7 +127,7 @@ public class DTASCRIPT : MonoBehaviour
             if (_hasClicked != true)
             {
                 Debug.Log("Clicked YELLOW");
-                elapsedTime = 17;
+                elapsedTime = 27;
                 _hasClicked = true;
                 StartCoroutine(ButtonPressed(YELLOWbutton,1));
             }
@@ -150,7 +150,7 @@ public class DTASCRIPT : MonoBehaviour
             if (_hasClicked != true)
             {
                 Debug.Log("Clicked GREEN");
-                elapsedTime = 17;
+                elapsedTime = 27;
                 _hasClicked = true;
                 StartCoroutine(ButtonPressed(GREENbutton,2));
 
@@ -174,7 +174,7 @@ public class DTASCRIPT : MonoBehaviour
             if (_hasClicked != true)
             {
 
-                elapsedTime = 17;
+                elapsedTime = 27;
                 _hasClicked = true;
                 StartCoroutine(ButtonPressed(BLUEbutton,3));
             }
