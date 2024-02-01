@@ -27,15 +27,21 @@ public class DialogManager : MonoBehaviour
     {
         pages = new string[]
         {
-            "This is the first page of text. Press return to continue.",
-            "This is the second page of text. Press return to continue.",
-            "This is the third and final page of text. Press return to finish."
+            "There are actually two Bells of Awakening.", "One's up above, in the Undead Church.", "The other is far, far below, in the ruins."
         };
 
         currentPage = 0;
         isTyping = false;
 
-        ShowCurrentPage();
+        //ShowCurrentPage();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ShowCurrentPage();
+        }
     }
 
     public void Next()
