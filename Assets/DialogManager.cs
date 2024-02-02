@@ -33,16 +33,11 @@ public class DialogManager : MonoBehaviour
         currentPage = 0;
         isTyping = false;
 
-        //ShowCurrentPage();
+        ShowCurrentPage();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            ShowCurrentPage();
-        }
-    }
+   
+    
 
     public void Next()
     {
