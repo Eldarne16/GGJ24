@@ -35,6 +35,12 @@ public class DialogManager : MonoBehaviour
 
         ShowCurrentPage();
     }
+<<<<<<< HEAD
+=======
+
+   
+    
+>>>>>>> 29632e9bf62f2a77de90d7b5035a1d686a256089
 
     public void Next()
     {
