@@ -64,22 +64,25 @@ public class gunscript : MonoBehaviour
 
         Vector3 direction =  GunPoint.transform.position - transform.parent.position;
         RaycastHit2D hit = Physics2D.Raycast(GunPoint.transform.position, direction, 100f);
-        
-            if(hit.transform.gameObject.tag == "WOMAN")
-            {
 
-                _hasWon = false;
-                StartCoroutine(LevelEnd());
+        if (hit.transform == null)
+        {
+            return;
+        }
+        else if (hit.transform.gameObject.tag == "WOMAN")
+        {
 
-            }
+            _hasWon = false;
+            StartCoroutine(LevelEnd());
 
-            if(hit.transform.gameObject.tag == "MAN")
-            {
+        }
+        else if(hit.transform.gameObject.tag == "MAN")
+        {
 
-                _hasWon = true;
-                StartCoroutine(LevelEnd());
+            _hasWon = true;
+            StartCoroutine(LevelEnd());
 
-            }
+        }
         
     }
 
