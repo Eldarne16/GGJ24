@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SimplePlatformerController : MonoBehaviour
@@ -8,6 +9,7 @@ public class SimplePlatformerController : MonoBehaviour
     public float jumpForce = 10000f;
     public LayerMask groundLayer;
     private bool _isGrounded;
+    private bool _noMove = false;
     [SerializeField]
     private Transform groundCheck;
 
@@ -17,6 +19,10 @@ public class SimplePlatformerController : MonoBehaviour
     private GameObject _underwaterBreathing;
     [SerializeField]
     private FollowObject _followObject;
+    [SerializeField]
+    private LevelMusicHandler _levelMusicHandler;
+    [SerializeField]
+    private AudioSource _audioSource;
 
 
     private void Start()
@@ -29,7 +35,9 @@ public class SimplePlatformerController : MonoBehaviour
     {
         if(collision.gameObject.layer == 8)
         {
-            Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
+            _noMove = true;
+            rb.velocity = new Vector2(0, 0);
+            StartCoroutine(LevelWin());
         }
         if(collision.gameObject.layer == 4)
         {
@@ -60,6 +68,10 @@ public class SimplePlatformerController : MonoBehaviour
 
     private void Update()
     {
+        if(_noMove == true)
+        {
+            return;
+        }
         //_isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (_isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -85,5 +97,13 @@ public class SimplePlatformerController : MonoBehaviour
         
 
 
+    }
+
+    IEnumerator LevelWin()
+    {
+        _levelMusicHandler.StopMusic();
+        _audioSource.Play();
+        yield return new WaitForSeconds(9f);
+        Infos.instance.GetHandler<SceneHandler>().NextLevel(true);
     }
 }

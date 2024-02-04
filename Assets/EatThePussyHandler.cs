@@ -6,6 +6,7 @@ public class EatThePussyHandler : MonoBehaviour
 {
     [SerializeField]
     private GameObject _picture;
+
     public void HasWon()
     {
         StartCoroutine(WaitForEnd(true));
@@ -18,7 +19,8 @@ public class EatThePussyHandler : MonoBehaviour
 
     IEnumerator WaitForEnd(bool hasWon)
     {
-        if(hasWon) { 
+        if(hasWon) {
+            GetComponent<AudioSource>().Play();
             _picture.SetActive(true);
             yield return new WaitForSeconds(3);
             Infos.instance.GetHandler<SceneHandler>().NextLevel(true);

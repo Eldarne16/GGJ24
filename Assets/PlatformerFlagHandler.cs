@@ -7,7 +7,9 @@ public class PlatformerFlagHandler : MonoBehaviour
     [SerializeField]
     private GameObject _flag;
     [SerializeField]
-    GameObject _camera;
+    private GameObject _camera;
+    [SerializeField]
+    private LevelMusicHandler _musicHandler;
 
     public Transform waypoint; // Assign the waypoint in the inspector
     public Transform _waypointFlag;
@@ -31,6 +33,8 @@ public class PlatformerFlagHandler : MonoBehaviour
 
     IEnumerator MoveObject()
     {
+        _musicHandler.StopMusic();
+        GetComponent<AudioSource>().Play();
         while (Vector3.Distance(_camera.transform.position, waypoint.position) > 0.001f)
         {
             float step = speed * Time.deltaTime; // Calculate the step size
@@ -44,7 +48,7 @@ public class PlatformerFlagHandler : MonoBehaviour
             _flag.transform.position = Vector3.MoveTowards(_flag.transform.position, _waypointFlag.position, step);
             yield return null; // Wait for the next frame
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         infos.GetHandler<SceneHandler>().NextLevel(true);
     }
 }

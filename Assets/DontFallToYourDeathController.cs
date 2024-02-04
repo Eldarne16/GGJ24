@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DontFallToYourDeathController : MonoBehaviour
 {
+    [SerializeField]
+    private LevelMusicHandler _musicHandler;
     private SceneHandler _sceneHandler;
     private void Awake()
     {
@@ -17,6 +19,8 @@ public class DontFallToYourDeathController : MonoBehaviour
 
     IEnumerator WaitForEnd()
     {
+        _musicHandler.StopMusic();
+        GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(3f);
         _sceneHandler.NextLevel(false);
     }

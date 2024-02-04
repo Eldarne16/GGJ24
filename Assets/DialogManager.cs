@@ -33,15 +33,7 @@ public class DialogManager : MonoBehaviour
         currentPage = 0;
         isTyping = false;
 
-        //ShowCurrentPage();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            ShowCurrentPage();
-        }
+        ShowCurrentPage();
     }
 
     public void Next()
@@ -55,7 +47,10 @@ public class DialogManager : MonoBehaviour
 
         if (currentPage < pages.Length)
         {
-            StopCoroutine(_currentCoroutine);
+            if(_currentCoroutine != null)
+            {
+                StopCoroutine(_currentCoroutine);
+            }
             ShowCurrentPage();
         }
         else
