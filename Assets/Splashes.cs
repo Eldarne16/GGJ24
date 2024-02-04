@@ -14,7 +14,15 @@ public class Splashes : MonoBehaviour
     Color NOAIColor;
     public Camera cam;
 
-    
+    [SerializeField]
+    AudioSource _audioSource;
+    [SerializeField]
+    AudioClip _ratedI;
+    [SerializeField]
+    AudioClip _noAI;
+
+    enum State { start, immature, immatureFade, ai, aiFade }
+    State _state = State.start;
     private void Start()
     {
         
@@ -37,25 +45,28 @@ public class Splashes : MonoBehaviour
             elapsedTime += Time.deltaTime;
         }
 
-        if(elapsedTime >0.6f)
+        if(elapsedTime > 0.6f && _state == State.start)
         {
+            _state = State.immature;
+            StartCoroutine(WaitAndPlaySound(_ratedI));
             StartCoroutine(ColorLerp(NOAIColor, ImmatureColor));
             StartCoroutine(FadeIn(IMMATURE));
         }
-        if(elapsedTime > 3.6f)
+        if(elapsedTime > 3.6f && _state == State.immature)
         {
-            
+            _state = State.immatureFade;
             StartCoroutine(FadeOut(IMMATURE));
         }
-        if (elapsedTime > 7.6f)
+        if (elapsedTime > 7.6f && _state == State.immatureFade)
         {
-        
+            _state = State.ai;
+            StartCoroutine(WaitAndPlaySound(_noAI));
             StartCoroutine(ColorLerp(ImmatureColor, NOAIColor));
             StartCoroutine(FadeIn(NOAI));
         }
-        if (elapsedTime > 10.6f)
+        if (elapsedTime > 10.6f && _state == State.ai)
         {
-            
+            _state = State.aiFade;
             StartCoroutine(FadeOut(NOAI));
         }
         if(elapsedTime>14)
@@ -82,6 +93,15 @@ public class Splashes : MonoBehaviour
             _image.color = new Color(1, 1, 1, ft/3);
             yield return null;
         }
+    }
+
+    IEnumerator WaitAndPlaySound(AudioClip clip)
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("yo");
+        _audioSource.clip = clip;
+        _audioSource.Play();
+        yield return null;
     }
 
     IEnumerator ColorLerp(Color _startColor, Color _endColor)

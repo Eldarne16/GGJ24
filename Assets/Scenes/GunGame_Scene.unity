@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunPoint: {fileID: 1402155609}
+  _audioSource: {fileID: 2112576270}
   _woman:
   - {fileID: 8300000, guid: 03fb6a849ed5ef9409e2751182d17ba0, type: 3}
   - {fileID: 8300000, guid: b699ba9a9de383c40b9633e3f513c008, type: 3}
@@ -952,6 +953,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 96c91b2fd7c9e5342afc571ef1173e4a, type: 3}
   _nothing:
   - {fileID: 8300000, guid: eb4c44ed07d09b347bf2ed1ac95c5c4e, type: 3}
+  _gunFire: {fileID: 8300000, guid: 00fde81108532e04188be04c540428e0, type: 3}
 --- !u!82 &2112576270
 AudioSource:
   m_ObjectHideFlags: 0
@@ -963,7 +965,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GrupUnderwater_SCENE.unity
     guid: e604cae4d2241884187acfa2c35169ff
+  - enabled: 1
+    path: Assets/Scenes/Transition_SCENE.unity
+    guid: 40f40a38aff4a8842ae3c42b5bae736c
   m_configObjects: {}

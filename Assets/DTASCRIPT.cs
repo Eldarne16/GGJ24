@@ -76,7 +76,7 @@ public class DTASCRIPT : MonoBehaviour
             elapsedTime += Time.deltaTime;
         }
         
-        if(elapsedTime >= 30)
+        if(elapsedTime >= 15)
         {
             if(_hasClicked == true)
             {

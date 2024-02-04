@@ -17,6 +17,13 @@ public class DialogManager : MonoBehaviour
 
     private Coroutine _currentCoroutine;
 
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip[] _clips;
+
+    int _currentAudio = 0;
+
     private void Awake()
     {
         _infos = Infos.instance;
@@ -32,15 +39,23 @@ public class DialogManager : MonoBehaviour
 
         currentPage = 0;
         isTyping = false;
-
+        _audioSource.clip = _clips[_currentAudio];
+        _audioSource.Play();
+        _currentAudio++;
         ShowCurrentPage();
     }
     public void Next()
     {
-        if(isTyping)
+        if (_audioSource.isPlaying)
         {
             isTyping=false;
             _hasWon = false;
+        }
+        if(_currentAudio < _clips.Length)
+        {
+            _audioSource.clip = _clips[_currentAudio];
+            _audioSource.Play();
+            _currentAudio++;
         }
         currentPage++;
 

@@ -17,11 +17,28 @@ public class gunscript : MonoBehaviour
     private State _lastState = State.initial;
 
     [SerializeField]
+    private AudioSource _audioSource;
+
+    [SerializeField]
     private AudioClip[] _woman;
     [SerializeField]
     private AudioClip[] _man;
     [SerializeField]
     private AudioClip[] _nothing;
+
+    [SerializeField]
+    private AudioClip _gunFire;
+
+    private bool _isPlaying = false;
+
+    enum StateWoman {initial, Jenny1, Johnny1, Jenny2, Johnny2, Jenny3, Johnny3, end}
+    StateWoman _stateWoman = StateWoman.initial;
+    enum StateMan { initial, Johnny4, Johnny5, end }
+    StateMan _stateMan = StateMan.initial;
+
+    enum StateNothing { initial, Jenny4, end }
+    StateNothing _stateNothing = StateNothing.initial;
+
 
     private void Awake()
     {
@@ -33,6 +50,8 @@ public class gunscript : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Fire();
+            _audioSource.clip = _gunFire;
+            _audioSource.Play();
         }
         Vector3 direction = transform.parent.position - GunPoint.transform.position;
         Debug.DrawRay(GunPoint.transform.position, direction, Color.green);
@@ -42,9 +61,16 @@ public class gunscript : MonoBehaviour
         if(_state != State.initial && _state != _lastState) 
         {
             StateChanged();
+            PlaySound(_state);
         }
 
-
+        if (_isPlaying == true)
+        {
+            if(_audioSource.isPlaying == false)
+            {
+                PlaySound(_state);
+            }
+        }
 
 
 
@@ -137,7 +163,7 @@ public class gunscript : MonoBehaviour
 
     void StateChanged()
     {
-        Debug.Log("changed");
+        Debug.Log(_state);
     }
 
     IEnumerator LevelEnd()
@@ -146,4 +172,83 @@ public class gunscript : MonoBehaviour
         _infos.GetHandler<SceneHandler>().NextLevel(_hasWon);
     }
 
+    void PlaySound(State state)
+    {
+        switch(state)
+        {
+            case State.woman:
+                switch(_stateWoman)
+                {
+                    case StateWoman.initial:
+                        _audioSource.clip = _woman[(int)StateWoman.initial];
+                        _stateWoman = StateWoman.Jenny1;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Jenny1:
+                        _audioSource.clip = _woman[(int)StateWoman.Jenny1];
+                        _stateWoman = StateWoman.Johnny1;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Johnny1:
+                        _audioSource.clip = _woman[(int)StateWoman.Johnny1];
+                        _stateWoman = StateWoman.Jenny2;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Jenny2:
+                        _audioSource.clip = _woman[(int)StateWoman.Jenny2];
+                        _stateWoman = StateWoman.Johnny2;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Johnny2:
+                        _audioSource.clip = _woman[(int)StateWoman.Johnny2];
+                        _stateWoman = StateWoman.Jenny3;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Jenny3:
+                        _audioSource.clip = _woman[(int)StateWoman.Jenny3];
+                        _stateWoman = StateWoman.Johnny3;
+                        _isPlaying = true;
+                        break;
+                    case StateWoman.Johnny3:
+                        _audioSource.clip = null;
+                        _isPlaying = false;
+                        break;
+                }
+                break;
+            case State.nothing:
+                switch(_stateNothing)
+                {
+                    case StateNothing.initial:
+                        _audioSource.clip = _nothing[(int)StateNothing.initial];
+                        _stateNothing = StateNothing.Jenny4;
+                        _isPlaying = true;
+                        break;
+                    case StateNothing.Jenny4:
+                        _audioSource.clip = null;
+                        _isPlaying = false;
+                        break;
+                }
+                break;
+            case State.man:
+                switch (_stateMan)
+                {
+                    case StateMan.initial:
+                        _audioSource.clip = _man[(int)StateMan.initial];
+                        _stateMan = StateMan.Johnny4;
+                        _isPlaying = true;
+                        break;
+                    case StateMan.Johnny4:
+                        _audioSource.clip = _man[(int)StateMan.Johnny4];
+                        _stateMan = StateMan.Johnny5;
+                        _isPlaying = true;
+                        break;
+                    case StateMan.Johnny5:
+                        _audioSource.clip = null;
+                        _isPlaying = false;
+                        break;
+                }
+                break;
+        }
+        _audioSource.Play();
+    }
 }

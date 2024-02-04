@@ -82,6 +82,11 @@ public class SceneHandler : MonoBehaviour
         }
     }
 
+    public void LoadTransition()
+    {
+        SceneManager.LoadScene("Transition_SCENE");
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -99,7 +104,14 @@ public class SceneHandler : MonoBehaviour
     {
         if(hasWon)
         {
-            LoadScene();
+            if (_currentSceneNamesList.Count == 0)
+            {
+                SceneManager.LoadScene(_finalScene);
+            }
+            else
+            {
+                SceneManager.LoadScene("Transition_SCENE");
+            }
         }
         else
         {
